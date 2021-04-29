@@ -7,7 +7,7 @@
 #include<windows.h>
 using namespace std;
 
-//´æ´¢±¾´Î´ğÍêµÄÌâÄ¿
+//å­˜å‚¨æœ¬æ¬¡ç­”å®Œçš„é¢˜ç›®
 struct Data
 {
 	string s;
@@ -17,17 +17,17 @@ struct Data
 };
 
 
-void gotoxy(int x, int y);   //Î»ÖÃº¯Êı
-int color(int i);         //ÉèÖÃ×ÖÌåÑÕÉ«
-void sjiemian();      //ÆğÊ¼½çÃæ
-int calculate(string s);    //¼ÆËã½á¹û
-string ques(char dj);    //²úÉúËãÊ½
-int judge(string s, int i, struct Data data[], char dj);   //½øĞĞÅĞ¶Ï
-void qfor(int i, char dj);       //Ñ­»·³öÌâ
-void sort(struct Data data[], int i);    //ÅÅĞò
+void gotoxy(int x, int y);   //ä½ç½®å‡½æ•°
+int color(int i);         //è®¾ç½®å­—ä½“é¢œè‰²
+void sjiemian();      //èµ·å§‹ç•Œé¢
+int calculate(string s);    //è®¡ç®—ç»“æœ
+string ques(char dj);    //äº§ç”Ÿç®—å¼
+int judge(string s, int i, struct Data data[], char dj);   //è¿›è¡Œåˆ¤æ–­
+void qfor(int i, char dj);       //å¾ªç¯å‡ºé¢˜
+void sort(struct Data data[], int i);    //æ’åº
 
 
-//Î»ÖÃº¯Êı
+//ä½ç½®å‡½æ•°
 void gotoxy(int x, int y)
 {
 	COORD pos;
@@ -37,17 +37,17 @@ void gotoxy(int x, int y)
 }
 
 
-//×ÖÌåÑÕÉ«   1ÉîÀ¶ 9Ç³À¶ 3µ­À¶ 11µ­µ­À¶ 2ÂÌ 4ºì 5×Ï 13Ç³×Ï 7°× 6»Æ
+//å­—ä½“é¢œè‰²   1æ·±è“ 9æµ…è“ 3æ·¡è“ 11æ·¡æ·¡è“ 2ç»¿ 4çº¢ 5ç´« 13æµ…ç´« 7ç™½ 6é»„
 int color(int i)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), i);
 	return 0;
 }
 
-//ÆğÊ¼½çÃæ
+//èµ·å§‹ç•Œé¢
 void sjiemian()
 {
-	int a;   //ÊÇ·ñ·µ»Ø±ê¼Ç
+	int a;   //æ˜¯å¦è¿”å›æ ‡è®°
 
 	HANDLE hOut;
 	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -55,22 +55,22 @@ void sjiemian()
 
 	gotoxy(29, 2);
 	color(1);
-	printf("Ô½ËãÔ½¿ªĞÄ!");
+	printf("è¶Šç®—è¶Šå¼€å¿ƒ!");
 	gotoxy(15, 5);
 	SetConsoleTextAttribute(hOut, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-	printf("ÄÑ¶È£º");
+	printf("éš¾åº¦ï¼š");
 	gotoxy(31, 5);
 	color(7);
-	printf("A.µÍ¼¶");
+	printf("A.ä½çº§");
 	gotoxy(31, 7);
 	color(6);
-	printf("B.ÖĞ¼¶");
+	printf("B.ä¸­çº§");
 	gotoxy(31, 9);
 	color(5);
-	printf("C.¸ß¼¶");
+	printf("C.é«˜çº§");
 	gotoxy(12, 11);
 	SetConsoleTextAttribute(hOut, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-	printf("ÇëÑ¡ÔñÄÑ¶ÈµÈ¼¶£º");
+	printf("è¯·é€‰æ‹©éš¾åº¦ç­‰çº§ï¼š");
 	gotoxy(34, 11);
 	char BZ;
 	scanf("%c", &BZ);
@@ -86,7 +86,7 @@ int main()
 	system("pause");
 	return 0;
 }
-//¼ÆËã½á¹û
+//è®¡ç®—ç»“æœ
 int calculate(string s)
 {
 	stack<int> num;
@@ -100,7 +100,7 @@ int calculate(string s)
 		}
 		if ((s[i] < '0' || s[i] > '9') && temp != "")
 		{
-			num.push(atoi(temp.c_str()));   //c_str½«string×ª»»ÎªCÓïÑÔÖĞµÄ×Ö·û´®¸ñÊ½
+			num.push(atoi(temp.c_str()));   //c_strå°†stringè½¬æ¢ä¸ºCè¯­è¨€ä¸­çš„å­—ç¬¦ä¸²æ ¼å¼
 
 			temp = "";
 		}
@@ -297,7 +297,7 @@ int calculate(string s)
 }
 
 
-// ²úÉúËãÊ½
+// äº§ç”Ÿç®—å¼
 string ques(char dj)
 {
 
@@ -311,8 +311,8 @@ string ques(char dj)
 	int i = rand() % 2 + 3,j;
 	for (a = 0; a < i; a++)
 	{
-		sz[a] = rand() % 100;                            //ÔİÊ±¸Ä³É10;
-		if (dj == 'A')            //ÓÉµÈ¼¶Ñ¡·ûºÅ
+		sz[a] = rand() % 100;                            //æš‚æ—¶æ”¹æˆ10;
+		if (dj == 'A')            //ç”±ç­‰çº§é€‰ç¬¦å·
 		{
 			j = rand() % 2;
 		}
@@ -329,10 +329,10 @@ string ques(char dj)
 			system("cls");
 			color(4);
 			gotoxy(24, 7);
-			printf("¶Ô²»Æğ£¬Ã»ÓĞ¸ÃµÈ¼¶¡£");
+			printf("å¯¹ä¸èµ·ï¼Œæ²¡æœ‰è¯¥ç­‰çº§ã€‚");
 			gotoxy(0, 18);
 			SetConsoleTextAttribute(hOut, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-			printf("°´ÈÎÒâ¼ü·µ»ØÄÑ¶ÈÑ¡Ôñ½çÃæ");
+			printf("æŒ‰ä»»æ„é”®è¿”å›éš¾åº¦é€‰æ‹©ç•Œé¢");
 			color(0);
 			system("pause");
 			system("cls");
@@ -355,7 +355,7 @@ string ques(char dj)
 			}
 			else
 			{
-				sz[a] = sz[a] / sz[a + 1] * sz[a + 1];    //Ê¹ËãÊ½ÖĞÃ»ÓĞĞ¡ÊıÇé¿ö
+				sz[a] = sz[a] / sz[a + 1] * sz[a + 1];    //ä½¿ç®—å¼ä¸­æ²¡æœ‰å°æ•°æƒ…å†µ
 			}
 
 		}
@@ -385,7 +385,7 @@ string ques(char dj)
 }
 
 
-//ÅĞ¶ÏÕıÎó
+//åˆ¤æ–­æ­£è¯¯
 int judge(string s, int i, struct Data data[], char dj)
 {
 
@@ -401,7 +401,7 @@ int judge(string s, int i, struct Data data[], char dj)
 	else if (dj == 'B')
 		color(6);
 	else color(5);
-	printf("µÚ%dÌâ\n%s", i+1, s.c_str());
+	printf("ç¬¬%dé¢˜\n%s", i+1, s.c_str());
 	begin = time(NULL);
 	scanf("%d", &yansw);
 	end = time(NULL);
@@ -410,16 +410,16 @@ int judge(string s, int i, struct Data data[], char dj)
 		gotoxy(29, 2);
 		color(2);
 		gotoxy(25, 4);
-		printf("»Ø´ğÕıÈ·\n");
+		printf("å›ç­”æ­£ç¡®\n");
 		gotoxy(25, 5);
-		printf("±¾ÌâÓÃÊ±%dÃë\n", end - begin);
+		printf("æœ¬é¢˜ç”¨æ—¶%dç§’\n", end - begin);
 		data[i].s = s;
 		data[i].time = end - begin;
 		data[i].tansw = tansw;
 		data[i].th = i+1;
 		gotoxy(0, 18);
 		SetConsoleTextAttribute(hOut, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-		printf("°´ÈÎÒâ¼üÌø×ªµ½ÏÂÒ»Ìâ");
+		printf("æŒ‰ä»»æ„é”®è·³è½¬åˆ°ä¸‹ä¸€é¢˜");
 		color(0);
 		system("pause");
 		system("cls");
@@ -429,42 +429,42 @@ int judge(string s, int i, struct Data data[], char dj)
 	{
 		color(4);
 		gotoxy(25, 4);
-		printf("»Ø´ğ´íÎó\n");
+		printf("å›ç­”é”™è¯¯\n");
 		gotoxy(25, 5);
-		printf("ÕıÈ·´ğ°¸Îª£º%d\n", tansw);
+		printf("æ­£ç¡®ç­”æ¡ˆä¸ºï¼š%d\n", tansw);
 		return 0;
 	}
 }
 
 
-// Ñ­»·³öÌâ
+// å¾ªç¯å‡ºé¢˜
 void qfor(int i, char dj)
 {
 	HANDLE hOut;
 	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	struct Data data[20];
-	string s;        //ËãÊ½×Ö·û´®
-	int a;         //ÕıÈ·´íÎó·µ»ØÖµ
+	string s;        //ç®—å¼å­—ç¬¦ä¸²
+	int a;         //æ­£ç¡®é”™è¯¯è¿”å›å€¼
 	int j;
 	int b = 1;
 	for (j = 0; j < i; j++)
 	{
 		s = ques(dj);
-		a = judge(s,j,data, dj);              //ÅĞ¶Ï
+		a = judge(s,j,data, dj);              //åˆ¤æ–­
 		cout << endl;
 		if (a == 0)
 		{
 			color(4);
 			gotoxy(24, 9);
-			printf("ºÜÒÅº¶£¡ÌôÕ½Ê§°Ü£¡\n");
+			printf("å¾ˆé—æ†¾ï¼æŒ‘æˆ˜å¤±è´¥ï¼\n");
 			gotoxy(0, 18);
 			SetConsoleTextAttribute(hOut, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-			printf("°´ÈÎÒâ¼ü·µ»ØÄÑ¶ÈÑ¡Ôñ½çÃæ\n");
+			printf("æŒ‰ä»»æ„é”®è¿”å›éš¾åº¦é€‰æ‹©ç•Œé¢\n");
 			color(0);
 			system("pause");
 			system("cls");
 			color(7);
-			getchar();              //ÇåÀí»º´æ
+			getchar();              //æ¸…ç†ç¼“å­˜
 			sjiemian();
 		}
 	}
@@ -473,16 +473,16 @@ void qfor(int i, char dj)
 		system("cls");
 		color(2);
 		gotoxy(24, 0);
-		printf("¹§Ï²Äã£¡ÌôÕ½³É¹¦£¡\n\n");
-		sort(data, i);                //ÅÅĞò
+		printf("æ­å–œä½ ï¼æŒ‘æˆ˜æˆåŠŸï¼\n\n");
+		sort(data, i);                //æ’åº
 		for (j = 0; j < i; j++)
 		{
-			printf("µÚ%dÌâ£º%s%d\n", data[j].th, data[j].s.c_str(), data[j].tansw);
-			printf("ÓÃÊ±%dÃë\n", data[j].time); cout << endl;
+			printf("ç¬¬%dé¢˜ï¼š%s%d\n", data[j].th, data[j].s.c_str(), data[j].tansw);
+			printf("ç”¨æ—¶%dç§’\n", data[j].time); cout << endl;
 		}
 		gotoxy(0, 18);
 		SetConsoleTextAttribute(hOut, BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-		printf("°´ÈÎÒâ¼ü·µ»ØÄÑ¶ÈÑ¡Ôñ½çÃæ\n");
+		printf("æŒ‰ä»»æ„é”®è¿”å›éš¾åº¦é€‰æ‹©ç•Œé¢\n");
 		color(0);
 		system("pause");
 		system("cls");
@@ -490,33 +490,33 @@ void qfor(int i, char dj)
 	}
 }
 
-//ÅÅĞò
+//æ’åº
 void sort(struct Data data[], int i)
 {
 	int h,j;
 	string tm;
 	int sj;
 	int da;
-	int xh;              //ÅÅĞòÓÃ
-	for (h = 0; h < i; h++)             //ÅÅĞò  Êä³öÓÃ
+	int xh;              //æ’åºç”¨
+	for (h = 0; h < i; h++)             //æ’åº  è¾“å‡ºç”¨
 	{
 		for (j = 0; j < i - h - 1; j++)
 		{
 			if (data[j].time > data[j + 1].time)
 			{
-				//Ê±¼ä
+				//æ—¶é—´
 				sj = data[j].time;
 				data[j].time = data[j + 1].time;
 				data[j + 1].time = sj;
-				//´ğ°¸
+				//ç­”æ¡ˆ
 				da = data[j].tansw;
 				data[j].tansw = data[j + 1].tansw;
 				data[j + 1].tansw = da;
-				//ÌâºÅ
+				//é¢˜å·
 				xh = data[j].th;
 				data[j].th = data[j + 1].th;
 				data[j + 1].th = xh;
-				//ÌâÄ¿
+				//é¢˜ç›®
 				tm = data[j].s;
 				data[j].s = data[j + 1].s;
 				data[j + 1].s = tm;
